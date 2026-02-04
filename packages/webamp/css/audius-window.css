@@ -14,6 +14,7 @@
 
 #webamp .audius-toolbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 4px;
   padding: 3px 4px;
@@ -25,6 +26,7 @@
 #webamp .audius-tabs {
   display: flex;
   gap: 3px;
+  flex: 0 0 auto;
 }
 
 #webamp .audius-tab {
@@ -47,14 +49,16 @@
 }
 
 #webamp .audius-search {
-  margin-left: auto;
   display: flex;
   align-items: center;
   gap: 4px;
+  flex: 1 1 140px;
+  min-width: 0;
 }
 
 #webamp .audius-search input {
-  width: 140px;
+  flex: 1 1 auto;
+  min-width: 0;
   height: 13px;
   background: var(--audius-input-bg);
   color: var(--audius-text);
@@ -145,6 +149,10 @@
   cursor: pointer;
 }
 
+#webamp .audius-search-button {
+  flex: 0 0 auto;
+}
+
 #webamp .audius-button.winamp-active {
   background: var(--audius-selected-bg);
   color: var(--audius-selected-text);
@@ -153,4 +161,12 @@
 #webamp .audius-button.disabled {
   opacity: 0.45;
   pointer-events: none;
+}
+
+#webamp .audius-menu-button {
+  cursor: pointer;
+}
+
+#webamp .audius-menu-button.disabled {
+  cursor: not-allowed;
 }

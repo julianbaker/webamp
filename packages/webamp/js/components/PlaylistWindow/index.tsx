@@ -1,25 +1,17 @@
-import { useCallback } from "react";
 import classnames from "classnames";
 
-import { WINDOWS, TRACK_HEIGHT, LOAD_STYLE } from "../../constants";
+import { WINDOWS } from "../../constants";
 import * as Actions from "../../actionCreators";
 import * as Selectors from "../../selectors";
 
-import { clamp } from "../../utils";
 import DropTarget from "../DropTarget";
 import Vis from "../Vis";
 import PlaylistShade from "./PlaylistShade";
-import AddMenu from "./AddMenu";
-import RemoveMenu from "./RemoveMenu";
-import SelectionMenu from "./SelectionMenu";
-import MiscMenu from "./MiscMenu";
-import ListMenu from "./ListMenu";
 import PlaylistResizeTarget from "./PlaylistResizeTarget";
 import PlaylistActionArea from "./PlaylistActionArea";
-import TrackList from "./TrackList";
-import PlaylistScrollBar from "./PlaylistScrollBar";
+import AudiusPlaylist from "./AudiusPlaylist";
+import AudiusMenuBar, { AudiusListButton } from "./AudiusMenuBar";
 
-import { AppState } from "../../types";
 import FocusTarget from "../FocusTarget";
 import { useActionCreator, useTypedSelector } from "../../hooks";
 import WinampButton from "../WinampButton";
@@ -28,17 +20,11 @@ interface Props {
   analyser: AnalyserNode;
 }
 
-function _maxTrackIndex(state: AppState) {
-  return state.playlist.trackOrder.length - 1;
-}
-
 function PlaylistWindow({ analyser }: Props) {
-  const offset = useTypedSelector(Selectors.getScrollOffset);
   const getWindowSize = useTypedSelector(Selectors.getWindowSize);
   const selectedWindow = useTypedSelector(Selectors.getFocusedWindow);
   const getWindowShade = useTypedSelector(Selectors.getWindowShade);
   const getWindowOpen = useTypedSelector(Selectors.getWindowOpen);
-  const maxTrackIndex = useTypedSelector(_maxTrackIndex);
   const skinPlaylistStyle = useTypedSelector(Selectors.getSkinPlaylistStyle);
   const getWindowPixelSize = useTypedSelector(Selectors.getWindowPixelSize);
 
@@ -49,29 +35,10 @@ function PlaylistWindow({ analyser }: Props) {
 
   const close = useActionCreator(Actions.closeWindow);
   const toggleShade = useActionCreator(Actions.togglePlaylistShadeMode);
-  const scrollUpFourTracks = useActionCreator(Actions.scrollUpFourTracks);
-  const scrollDownFourTracks = useActionCreator(Actions.scrollDownFourTracks);
-  const scrollPlaylistByDelta = useActionCreator(Actions.scrollPlaylistByDelta);
-  const loadMedia = useActionCreator(Actions.loadMedia);
+  const handleDrop = () => {};
 
   const showVisualizer = playlistSize[0] > 2;
   const activateVisualizer = !getWindowOpen(WINDOWS.MAIN);
-
-  const handleDrop = useCallback(
-    (
-      e: React.DragEvent<HTMLDivElement>,
-      targetCoords: { x: number; y: number }
-    ) => {
-      const top = e.clientY - targetCoords.y;
-      const atIndex = clamp(
-        offset + Math.round((top - 23) / TRACK_HEIGHT),
-        0,
-        maxTrackIndex + 1
-      );
-      loadMedia(e, LOAD_STYLE.NONE, atIndex);
-    },
-    [loadMedia, maxTrackIndex, offset]
-  );
 
   if (playlistShade) {
     return <PlaylistShade />;
@@ -97,7 +64,6 @@ function PlaylistWindow({ analyser }: Props) {
         className={classes}
         style={style}
         handleDrop={handleDrop}
-        onWheelActive={scrollPlaylistByDelta}
       >
         <div className="playlist-top draggable" onDoubleClick={toggleShade}>
           <div className="playlist-top-left draggable" />
@@ -121,18 +87,13 @@ function PlaylistWindow({ analyser }: Props) {
         <div className="playlist-middle draggable">
           <div className="playlist-middle-left draggable" />
           <div className="playlist-middle-center">
-            <TrackList />
+            <AudiusPlaylist />
           </div>
-          <WinampButton className="playlist-middle-right draggable">
-            <PlaylistScrollBar />
-          </WinampButton>
+          <div className="playlist-middle-right draggable" />
         </div>
         <div className="playlist-bottom draggable">
           <div className="playlist-bottom-left draggable">
-            <AddMenu />
-            <RemoveMenu />
-            <SelectionMenu />
-            <MiscMenu />
+            <AudiusMenuBar />
           </div>
           <div className="playlist-bottom-center draggable" />
           <div className="playlist-bottom-right draggable">
@@ -146,12 +107,7 @@ function PlaylistWindow({ analyser }: Props) {
               </div>
             )}
             <PlaylistActionArea />
-            <ListMenu />
-            <div id="playlist-scroll-up-button" onClick={scrollUpFourTracks} />
-            <div
-              id="playlist-scroll-down-button"
-              onClick={scrollDownFourTracks}
-            />
+            <AudiusListButton />
             <PlaylistResizeTarget />
           </div>
         </div>

@@ -1,31 +1,19 @@
 import PlaylistMenu from "./PlaylistMenu";
 import SortContextMenu from "./SortContextMenu";
 import MiscOptionsContextMenu from "./MiscOptionsContextMenu";
-import * as Actions from "../../actionCreators";
-import * as Selectors from "../../selectors";
-import { WINDOWS } from "../../constants";
-import { useActionCreator, useTypedSelector } from "../../hooks";
+import { useCallback } from "react";
 
 const MiscMenu = () => {
-  const toggleWindow = useActionCreator(Actions.toggleWindow);
-  const setFocusedWindow = useActionCreator(Actions.setFocusedWindow);
-  const getWindowOpen = useTypedSelector(Selectors.getWindowOpen);
-
-  const handleOpenAudius = () => {
-    if (!getWindowOpen(WINDOWS.AUDIUS)) {
-      toggleWindow(WINDOWS.AUDIUS);
-    }
-    setFocusedWindow(WINDOWS.AUDIUS);
-  };
+  const stopPropagation = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+  }, []);
 
   return (
     <PlaylistMenu id="playlist-misc-menu">
-      <div className="sort-list" onClick={(e) => e.stopPropagation()}>
+      <div className="sort-list" onClick={stopPropagation}>
         <SortContextMenu />
       </div>
-      <div className="file-info" onClick={handleOpenAudius} />
-
-      <div className="misc-options" onClick={(e) => e.stopPropagation()}>
+      <div className="misc-options" onClick={stopPropagation}>
         <MiscOptionsContextMenu />
       </div>
     </PlaylistMenu>

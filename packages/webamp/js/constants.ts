@@ -16,7 +16,6 @@ export const WINDOWS: { [key: string]: WindowId } = {
   MAIN: "main",
   PLAYLIST: "playlist",
   EQUALIZER: "equalizer",
-  AUDIUS: "audius",
   MILKDROP: "milkdrop",
 };
 

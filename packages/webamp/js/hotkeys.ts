@@ -117,9 +117,6 @@ export function bindHotkeys(dispatch: Dispatch): () => void {
         case 71: // ALT+G
           dispatch(toggleWindow("equalizer"));
           break;
-        case 65: // ALT+A
-          dispatch(toggleWindow("audius"));
-          break;
       }
     } else {
       switch (e.keyCode) {

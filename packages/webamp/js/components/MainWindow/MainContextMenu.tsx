@@ -29,7 +29,6 @@ const MainContextMenu = memo(({ filePickers }: Props) => {
     WINDOWS.MAIN,
     WINDOWS.EQUALIZER,
     WINDOWS.PLAYLIST,
-    WINDOWS.AUDIUS,
     WINDOWS.MILKDROP,
   ];
   const orderedWindows = [

@@ -7,7 +7,6 @@ import { loggerMiddleware } from "./eventLogger";
 import { Action, Options, AppState, WindowLayout } from "../../js/types";
 
 import { getButterchurnOptions } from "./butterchurnOptions";
-import dropboxFilePicker from "./dropboxFilePicker";
 import availableSkins from "./availableSkins";
 import { getTrendingTracks, resolveAudiusUrl } from "../../js/audius";
 
@@ -64,11 +63,7 @@ export async function getWebampConfig(
         playlist: {
           position: { left: 0, top: 232 },
           size: { extraHeight: 0, extraWidth: 0 },
-          closed: true,
-        },
-        audius: {
-          position: { left: 0, top: 232 },
-          size: { extraHeight: 0, extraWidth: 0 },
+          closed: false,
         },
         milkdrop: {
           position: { left: 0, top: 348 },
@@ -82,11 +77,7 @@ export async function getWebampConfig(
         playlist: {
           position: { left: 0, top: 232 },
           size: { extraHeight: 4, extraWidth: 0 },
-          closed: true,
-        },
-        audius: {
-          position: { left: 0, top: 232 },
-          size: { extraHeight: 4, extraWidth: 0 },
+          closed: false,
         },
         milkdrop: {
           position: { left: 275, top: 0 },
@@ -107,7 +98,7 @@ export async function getWebampConfig(
     initialTracks,
     availableSkins,
     windowLayout,
-    filePickers: [dropboxFilePicker],
+    filePickers: [],
     enableHotkeys: true,
     enableMediaSession: true,
     handleTrackDropEvent: (e) => {
