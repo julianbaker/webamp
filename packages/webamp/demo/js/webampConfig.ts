@@ -98,7 +98,6 @@ export async function getWebampConfig(
     initialTracks,
     availableSkins,
     windowLayout,
-    filePickers: [],
     enableHotkeys: true,
     enableMediaSession: true,
     handleTrackDropEvent: (e) => {

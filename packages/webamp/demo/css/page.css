@@ -21,6 +21,21 @@ body {
   text-align: center;
 }
 
+.corner-badge {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  display: block;
+  width: 140px;
+}
+
+.corner-badge img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .about {
   position: fixed;
   bottom: 6px;
