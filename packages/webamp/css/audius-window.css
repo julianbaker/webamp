@@ -1,0 +1,168 @@
+#webamp .audius-window {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--audius-bg);
+  color: var(--audius-text);
+  font-family: var(--audius-font, Arial, sans-serif);
+  font-size: 9px;
+  letter-spacing: 0.3px;
+  user-select: none;
+}
+
+#webamp .audius-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 4px;
+  background: var(--audius-panel);
+  border-bottom: 1px solid var(--audius-border);
+}
+
+#webamp .audius-tabs {
+  display: flex;
+  gap: 3px;
+}
+
+#webamp .audius-tab {
+  border: 1px solid var(--audius-border);
+  background: var(--audius-panel);
+  color: var(--audius-text);
+  padding: 1px 6px;
+  cursor: pointer;
+}
+
+#webamp .audius-tab.active {
+  background: var(--audius-selected-bg);
+  border-color: var(--audius-selected-bg);
+  color: var(--audius-selected-text);
+}
+
+#webamp .audius-tab.winamp-active {
+  background: var(--audius-selected-bg);
+  color: var(--audius-selected-text);
+}
+
+#webamp .audius-search {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+#webamp .audius-search input {
+  width: 140px;
+  height: 13px;
+  background: var(--audius-input-bg);
+  color: var(--audius-text);
+  border: 1px solid var(--audius-border);
+  padding: 0 3px;
+  font-size: 9px;
+}
+
+#webamp .audius-results {
+  flex: 1;
+  background: var(--audius-bg);
+  border-top: 1px solid var(--audius-border);
+  border-bottom: 1px solid var(--audius-border);
+}
+
+#webamp .audius-results-scroll {
+  height: 100%;
+  overflow-y: auto;
+  padding: 2px 0;
+}
+
+#webamp .audius-empty {
+  padding: 8px 6px;
+  color: var(--audius-muted);
+  font-style: italic;
+}
+
+#webamp .audius-track {
+  display: flex;
+  align-items: center;
+  height: 13px;
+  line-height: 13px;
+  padding: 0 4px;
+  cursor: pointer;
+}
+
+#webamp .audius-track:hover {
+  background: var(--audius-panel);
+}
+
+#webamp .audius-track.selected {
+  background: var(--audius-selected-bg);
+  color: var(--audius-selected-text);
+}
+
+#webamp .audius-track.selected .audius-track-duration,
+#webamp .audius-track.selected .audius-track-artist {
+  color: var(--audius-selected-text);
+}
+
+#webamp .audius-track-index {
+  width: 24px;
+  text-align: right;
+  margin-right: 4px;
+  flex: 0 0 auto;
+}
+
+#webamp .audius-track-title {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#webamp .audius-track-primary {
+  color: inherit;
+}
+
+#webamp .audius-track-artist {
+  color: var(--audius-muted);
+}
+
+#webamp .audius-track-duration {
+  width: 42px;
+  text-align: right;
+  color: var(--audius-muted);
+  flex: 0 0 auto;
+}
+
+#webamp .audius-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: var(--audius-panel);
+  border-top: 1px solid var(--audius-border);
+}
+
+#webamp .audius-button {
+  border: 1px solid var(--audius-border);
+  background: var(--audius-panel);
+  color: var(--audius-text);
+  padding: 1px 6px;
+  height: 16px;
+  line-height: 14px;
+  cursor: pointer;
+}
+
+#webamp .audius-button.winamp-active {
+  background: var(--audius-selected-bg);
+  color: var(--audius-selected-text);
+}
+
+#webamp .audius-button.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+#webamp .audius-status {
+  margin-left: auto;
+  color: var(--audius-muted);
+  font-size: 8px;
+}

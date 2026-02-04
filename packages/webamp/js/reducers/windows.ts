@@ -69,6 +69,17 @@ const defaultWindowsState: WindowsState = {
       hotkey: "Alt+E",
       position: { x: 0, y: 0 },
     },
+    [WINDOWS.AUDIUS]: {
+      title: "Audius Browser",
+      size: [4, 7],
+      open: false,
+      shade: false,
+      canResize: true,
+      canShade: false,
+      canDouble: false,
+      hotkey: "Alt+A",
+      position: { x: 0, y: 0 },
+    },
     [WINDOWS.MILKDROP]: {
       title: "Milkdrop",
       size: [0, 0],
@@ -84,6 +95,7 @@ const defaultWindowsState: WindowsState = {
   windowOrder: [
     WINDOWS.PLAYLIST,
     WINDOWS.EQUALIZER,
+    WINDOWS.AUDIUS,
     WINDOWS.MILKDROP,
     WINDOWS.MAIN,
   ],

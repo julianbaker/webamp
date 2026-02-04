@@ -11,6 +11,7 @@ import { Action, Options, AppState, WindowLayout } from "../../js/types";
 import { getButterchurnOptions } from "./butterchurnOptions";
 import dropboxFilePicker from "./dropboxFilePicker";
 import availableSkins from "./availableSkins";
+import { resolveAudiusUrl } from "./audius";
 
 import { initialTracks, initialState } from "./config";
 import screenshotInitialState from "./screenshotInitialState";
@@ -112,6 +113,29 @@ export async function getWebampConfig(
         const track = JSON.parse(trackJson);
         return [track];
       } catch (_err) {
+        return null;
+      }
+    },
+    handleAddUrlEvent: async () => {
+      const url = window.prompt(
+        "Enter an Audius track, playlist, or user URL."
+      );
+      if (!url) {
+        return null;
+      }
+      try {
+        const resolved = await resolveAudiusUrl(url.trim());
+        if (resolved.type === "track") {
+          return [resolved.track];
+        }
+        if (resolved.tracks.length === 0) {
+          alert("No streamable tracks found at that URL.");
+          return null;
+        }
+        return resolved.tracks;
+      } catch (error) {
+        console.error("Failed to resolve Audius URL", error);
+        alert("Could not resolve Audius URL.");
         return null;
       }
     },

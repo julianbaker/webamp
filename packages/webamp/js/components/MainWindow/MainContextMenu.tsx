@@ -25,6 +25,19 @@ const MainContextMenu = memo(({ filePickers }: Props) => {
     type: "MAIN_CONTEXT_MENU_OPENED",
   }));
   const isMilkdropEnabled = useTypedSelector(Selectors.getMilkdropEnabled);
+  const windowMenuOrder: WindowId[] = [
+    WINDOWS.MAIN,
+    WINDOWS.EQUALIZER,
+    WINDOWS.PLAYLIST,
+    WINDOWS.AUDIUS,
+    WINDOWS.MILKDROP,
+  ];
+  const orderedWindows = [
+    ...windowMenuOrder.filter((windowId) => genWindows[windowId] != null),
+    ...(Object.keys(genWindows).filter(
+      (windowId) => !windowMenuOrder.includes(windowId as WindowId)
+    ) as WindowId[]),
+  ];
 
   useEffect(() => {
     menuOpened();
@@ -61,17 +74,17 @@ const MainContextMenu = memo(({ filePickers }: Props) => {
           )}
       </Parent>
       <Hr />
-      {Object.keys(genWindows).map((i) => {
-        if (i === WINDOWS.MILKDROP && !isMilkdropEnabled) {
+      {orderedWindows.map((windowId) => {
+        if (windowId === WINDOWS.MILKDROP && !isMilkdropEnabled) {
           return null;
         }
         return (
           <Node
-            key={i}
-            label={genWindows[i].title}
-            checked={genWindows[i].open}
-            onClick={() => toggleWindow(i as WindowId)}
-            hotkey={genWindows[i].hotkey}
+            key={windowId}
+            label={genWindows[windowId].title}
+            checked={genWindows[windowId].open}
+            onClick={() => toggleWindow(windowId)}
+            hotkey={genWindows[windowId].hotkey}
           />
         );
       })}

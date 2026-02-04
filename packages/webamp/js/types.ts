@@ -148,7 +148,12 @@ export interface SkinGenExColors {
   listTextSelectedBackground: string;
 }
 
-export type WindowId = "main" | "playlist" | "equalizer" | "milkdrop";
+export type WindowId =
+  | "main"
+  | "playlist"
+  | "equalizer"
+  | "audius"
+  | "milkdrop";
 
 // TODO: Fill these out once we actually use them.
 export type SkinData = {
@@ -788,6 +793,11 @@ export type WindowLayout = {
   playlist?: {
     position: WindowPosition;
     shadeMode?: boolean;
+    size?: WindowSize | null;
+    closed?: boolean;
+  };
+  audius?: {
+    position: WindowPosition;
     size?: WindowSize | null;
     closed?: boolean;
   };

@@ -206,14 +206,20 @@ export function setWindowLayout(layout?: WindowLayout): Thunk {
       dispatch(stackWindows());
       return;
     }
-    for (const id of ["playlist", "milkdrop"] as const) {
+    for (const id of ["playlist", "milkdrop", "audius"] as const) {
       const w = layout[id];
       if (w != null && w.size != null) {
         const { extraHeight: plusHeight, extraWidth: plusWidth } = w.size;
         dispatch(setWindowSize(id, [plusWidth, plusHeight]));
       }
     }
-    for (const id of ["main", "playlist", "equalizer", "milkdrop"] as const) {
+    for (const id of [
+      "main",
+      "playlist",
+      "equalizer",
+      "audius",
+      "milkdrop",
+    ] as const) {
       const w = layout[id];
       if (w == null || w.closed) {
         dispatch(closeWindow(id));
