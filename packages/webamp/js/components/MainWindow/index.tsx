@@ -129,7 +129,7 @@ const MainWindow = React.memo(({ analyser, filePickers }: Props) => {
         <a
           id="about"
           target="_blank"
-          href="https://webamp.org/about"
+          href="https://github.com/julianbaker/webamp"
           title="About"
         />
       </FocusTarget>

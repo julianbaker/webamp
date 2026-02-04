@@ -3,6 +3,18 @@ import * as Selectors from "./selectors";
 
 export default function enableMediaSession(webamp: WebampLazy) {
   if ("mediaSession" in navigator) {
+    const setActionHandler = (
+      action: string,
+      handler: ((details?: { seekOffset?: number }) => void) | null
+    ) => {
+      try {
+        // @ts-ignore TypeScript does not know about the Media Session API.
+        navigator.mediaSession.setActionHandler(action, handler);
+      } catch (_error) {
+        // Some browsers throw for unsupported actions. Ignore and continue.
+      }
+    };
+
     const updatePlaybackState = () => {
       const status = Selectors.getPlayerMediaStatus(webamp.store.getState());
       const nextState =
@@ -41,32 +53,27 @@ export default function enableMediaSession(webamp: WebampLazy) {
     updatePlaybackState();
     webamp.store.subscribe(updatePlaybackState);
 
-    // @ts-ignore TypeScript does not know about the Media Session API: https://github.com/Microsoft/TypeScript/issues/19473
-    navigator.mediaSession.setActionHandler("play", () => {
+    setActionHandler("play", () => {
       webamp.play();
     });
-    // @ts-ignore TypeScript does not know about the Media Session API: https://github.com/Microsoft/TypeScript/issues/19473
-    navigator.mediaSession.setActionHandler("pause", () => {
+    setActionHandler("pause", () => {
       webamp.pause();
     });
-    // @ts-ignore TypeScript does not know about the Media Session API: https://github.com/Microsoft/TypeScript/issues/19473
-    navigator.mediaSession.setActionHandler("stop", () => {
+    setActionHandler("stop", () => {
       webamp.stop();
     });
-    // @ts-ignore TypeScript does not know about the Media Session API: https://github.com/Microsoft/TypeScript/issues/19473
-    navigator.mediaSession.setActionHandler("seekbackward", () => {
-      webamp.seekBackward(10);
+    setActionHandler("seekbackward", (details) => {
+      const offset = details?.seekOffset ?? 10;
+      webamp.seekBackward(offset);
     });
-    // @ts-ignore TypeScript does not know about the Media Session API: https://github.com/Microsoft/TypeScript/issues/19473
-    navigator.mediaSession.setActionHandler("seekforward", () => {
-      webamp.seekForward(10);
+    setActionHandler("seekforward", (details) => {
+      const offset = details?.seekOffset ?? 10;
+      webamp.seekForward(offset);
     });
-    // @ts-ignore TypeScript does not know about the Media Session API: https://github.com/Microsoft/TypeScript/issues/19473
-    navigator.mediaSession.setActionHandler("previoustrack", () => {
+    setActionHandler("previoustrack", () => {
       webamp.previousTrack();
     });
-    // @ts-ignore TypeScript does not know about the Media Session API: https://github.com/Microsoft/TypeScript/issues/19473
-    navigator.mediaSession.setActionHandler("nexttrack", () => {
+    setActionHandler("nexttrack", () => {
       webamp.nextTrack();
     });
   }

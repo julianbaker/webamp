@@ -34,6 +34,57 @@ export function bindHotkeys(dispatch: Dispatch): () => void {
   ];
 
   const listener = (e: KeyboardEvent) => {
+    const mediaKey = e.key || e.code;
+    switch (mediaKey) {
+      case "MediaTrackNext":
+        dispatch(next());
+        e.preventDefault();
+        return;
+      case "MediaTrackPrevious":
+        dispatch(previous());
+        e.preventDefault();
+        return;
+      case "MediaPlayPause":
+        dispatch(pause());
+        e.preventDefault();
+        return;
+      case "MediaStop":
+        dispatch(stop());
+        e.preventDefault();
+        return;
+      case "MediaFastForward":
+        dispatch(seekForward(5));
+        e.preventDefault();
+        return;
+      case "MediaRewind":
+        dispatch(seekBackward(5));
+        e.preventDefault();
+        return;
+      default:
+        break;
+    }
+
+    switch (e.keyCode) {
+      case 176: // MediaTrackNext
+        dispatch(next());
+        e.preventDefault();
+        return;
+      case 177: // MediaTrackPrevious
+        dispatch(previous());
+        e.preventDefault();
+        return;
+      case 178: // MediaStop
+        dispatch(stop());
+        e.preventDefault();
+        return;
+      case 179: // MediaPlayPause
+        dispatch(pause());
+        e.preventDefault();
+        return;
+      default:
+        break;
+    }
+
     if (
       e.target instanceof Element &&
       IGNORE_EVENTS_FROM_TAGS.has(e.target.tagName.toLowerCase())

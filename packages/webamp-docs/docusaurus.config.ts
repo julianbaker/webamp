@@ -82,7 +82,7 @@ const config: Config = {
         },
         // { to: "/blog", label: "Blog", position: "left" },
         {
-          href: "https://github.com/captbaritone/webamp",
+          href: "https://github.com/julianbaker/webamp",
           label: "GitHub",
           position: "right",
         },

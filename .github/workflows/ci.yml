@@ -48,7 +48,7 @@ jobs:
   release:
     name: Publish packages to NPM
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.repository == 'captbaritone/webamp'
+    if: github.event_name == 'push' && github.repository == 'julianbaker/webamp'
     needs: [ci]
     permissions:
       contents: read

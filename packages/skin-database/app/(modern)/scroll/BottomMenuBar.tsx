@@ -88,7 +88,7 @@ export default function BottomMenuBar() {
               }}
             />
             <HamburgerMenuItem
-              href="https://github.com/captbaritone/webamp/"
+              href="https://github.com/julianbaker/webamp/"
               icon={<Github size={20} />}
               label="GitHub"
               onClick={() => {

@@ -46,7 +46,7 @@ const MainContextMenu = memo(({ filePickers }: Props) => {
   return (
     <Fragment>
       <LinkNode
-        href="https://webamp.org/about"
+        href="https://github.com/julianbaker/webamp"
         target="_blank"
         label="Webamp..."
       />

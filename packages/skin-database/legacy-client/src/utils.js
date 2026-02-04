@@ -38,7 +38,7 @@ export function clamp(min, max, value) {
   return Math.min(max, Math.max(min, value));
 }
 
-// https://github.com/captbaritone/webamp/blob/7fe34a4658e543fccabacf3c516709ae3501b2ec/packages/webamp/js/fileUtils.ts
+// https://github.com/julianbaker/webamp/blob/7fe34a4658e543fccabacf3c516709ae3501b2ec/packages/webamp/js/fileUtils.ts
 export async function promptForFileReferences({ accept, directory = false }) {
   return new Promise((resolve) => {
     // Does this represent a memory leak somehow?

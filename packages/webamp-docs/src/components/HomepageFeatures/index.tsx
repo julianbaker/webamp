@@ -12,7 +12,7 @@ if (ExecutionEnvironment.canUseDOM) {
 // https://freemusicarchive.org/music/netBloc_Artists/netBloc_Vol_24_tiuqottigeloot/
 const album = "netBloc Vol. 24: tiuqottigeloot";
 const llamaAudio =
-  "https://cdn.jsdelivr.net/gh/captbaritone/webamp@43434d82cfe0e37286dbbe0666072dc3190a83bc/mp3/llama-2.91.mp3";
+  "https://cdn.jsdelivr.net/gh/julianbaker/webamp@43434d82cfe0e37286dbbe0666072dc3190a83bc/mp3/llama-2.91.mp3";
 
 export const initialTracks: URLTrack[] = [
   {

@@ -422,7 +422,7 @@ function getPos(e: PosEvent): { clientX: number; clientY: number } {
       const touch =
         (e as TouchEvent).targetTouches[0] ?? (e as TouchEvent).touches[0];
       if (touch == null) {
-        // Investigating https://github.com/captbaritone/webamp/issues/1105
+        // Investigating https://github.com/julianbaker/webamp/issues/1105
         throw new Error("Unexpected touch event with zero touch targets.");
       }
       return touch;

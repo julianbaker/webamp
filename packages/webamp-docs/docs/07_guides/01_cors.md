@@ -18,5 +18,5 @@ You can learn more about CORS in the [MDN documentation](https://developer.mozil
 
 If you want to test if the issue you are facing is being caused by CORS you can try swapping out your skin or audio file URL for one of the following in files which _are_ served with permissive CORs headers. If that fixes your issue, you are likely facing an issue caused by CORS:
 
-- **Audio File**: `https://cdn.jsdelivr.net/gh/captbaritone/webamp@43434d82cfe0e37286dbbe0666072dc3190a83bc/mp3/llama-2.91.mp3`
+- **Audio File**: `https://cdn.jsdelivr.net/gh/julianbaker/webamp@43434d82cfe0e37286dbbe0666072dc3190a83bc/mp3/llama-2.91.mp3`
 - **Skin File**: `https://archive.org/cors/winampskin_Zelda_Amp/Zelda-Amp.wsz`

@@ -3,7 +3,7 @@ import Group from "./Group";
 export default abstract class XuiElement extends Group {
   __inited: boolean = false;
 
-  _unhandledXuiParams: { key: string; value: string }[] = []; //https://github.com/captbaritone/webamp/pull/1161#discussion_r830527754
+  _unhandledXuiParams: { key: string; value: string }[] = []; //https://github.com/julianbaker/webamp/pull/1161#discussion_r830527754
 
   getElTag(): string {
     return "group";

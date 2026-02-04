@@ -22,13 +22,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/captbaritone/webamp.git",
+    "url": "https://github.com/julianbaker/webamp.git",
     "directory": "packages/ani-cursor"
   },
   "bugs": {
-    "url": "https://github.com/captbaritone/webamp/issues"
+    "url": "https://github.com/julianbaker/webamp/issues"
   },
-  "homepage": "https://github.com/captbaritone/webamp/tree/master/packages/ani-cursor",
+  "homepage": "https://github.com/julianbaker/webamp/tree/master/packages/ani-cursor",
   "scripts": {
     "build": "tsc",
     "type-check": "tsc --noEmit",
