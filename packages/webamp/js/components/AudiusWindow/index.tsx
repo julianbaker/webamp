@@ -52,7 +52,6 @@ function AudiusWindow() {
   const searchInputRef = useRef<HTMLInputElement | null>(null);
 
   const loadMediaFiles = useActionCreator(Actions.loadMediaFiles);
-  const trackCount = useTypedSelector(Selectors.getTrackCount);
   const skinPlaylistStyle = useTypedSelector(Selectors.getSkinPlaylistStyle);
   const skinGenExColors = useTypedSelector(
     (state) => state.display.skinGenExColors
@@ -128,21 +127,6 @@ function AudiusWindow() {
     loadMediaFiles([selected], LOAD_STYLE.PLAY);
   };
 
-  const handleEnqueue = (track?: Track) => {
-    const selected = resolveSelectedTrack(track);
-    if (!selected) {
-      return;
-    }
-    loadMediaFiles([selected], LOAD_STYLE.NONE, trackCount);
-  };
-
-  const handleAddAll = () => {
-    if (!activeState.tracks.length) {
-      return;
-    }
-    loadMediaFiles(activeState.tracks, LOAD_STYLE.NONE, trackCount);
-  };
-
   const handleSearch = async () => {
     const query = searchInput.trim();
     if (!query) {
@@ -157,25 +141,6 @@ function AudiusWindow() {
     }
     setSearchState({ status: "ready", tracks, query });
   };
-
-  const canAct = activeState.tracks.length > 0;
-  const canActSelected = canAct && selectedIndex != null;
-
-  const statusText = (() => {
-    if (activeState.status === "loading") {
-      return "Loading...";
-    }
-    if (view === "search" && activeState.status === "idle") {
-      return "Enter a search term.";
-    }
-    if (!activeState.tracks.length) {
-      return view === "search" ? "No results." : "No trending tracks.";
-    }
-    if (view === "search") {
-      return `${activeState.tracks.length} results`;
-    }
-    return `${activeState.tracks.length} trending tracks`;
-  })();
 
   return (
     <GenWindow title="Audius Browser" windowId={WINDOWS.AUDIUS}>
@@ -283,33 +248,6 @@ function AudiusWindow() {
                 );
               })}
             </div>
-          </div>
-          <div className="audius-actions">
-            <WinampButton
-              className={classnames("audius-button", {
-                disabled: !canActSelected,
-              })}
-              onClick={canActSelected ? () => handlePlayNow() : undefined}
-            >
-              Play Now
-            </WinampButton>
-            <WinampButton
-              className={classnames("audius-button", {
-                disabled: !canActSelected,
-              })}
-              onClick={canActSelected ? () => handleEnqueue() : undefined}
-            >
-              Enqueue
-            </WinampButton>
-            <WinampButton
-              className={classnames("audius-button", {
-                disabled: !canAct,
-              })}
-              onClick={canAct ? handleAddAll : undefined}
-            >
-              Add All
-            </WinampButton>
-            <div className="audius-status">{statusText}</div>
           </div>
         </div>
       )}

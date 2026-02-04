@@ -135,16 +135,6 @@
   flex: 0 0 auto;
 }
 
-#webamp .audius-actions {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px;
-  background: var(--audius-panel);
-  border-top: 1px solid var(--audius-border);
-  flex: 0 0 auto;
-}
-
 #webamp .audius-button {
   border: 1px solid var(--audius-border);
   background: var(--audius-panel);
@@ -163,10 +153,4 @@
 #webamp .audius-button.disabled {
   opacity: 0.45;
   pointer-events: none;
-}
-
-#webamp .audius-status {
-  margin-left: auto;
-  color: var(--audius-muted);
-  font-size: 8px;
 }
