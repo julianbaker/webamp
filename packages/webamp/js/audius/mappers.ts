@@ -1,4 +1,4 @@
-import { Track } from "../../../js/types";
+import { Track } from "../types";
 import { getStreamUrl } from "./client";
 import { AudiusArtwork, AudiusTrack } from "./types";
 

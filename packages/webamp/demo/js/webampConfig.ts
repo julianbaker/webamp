@@ -4,16 +4,14 @@ import createMiddleware from "redux-sentry-middleware";
 // @ts-ignore
 import isButterchurnSupported from "butterchurn/dist/isSupported.min";
 import { loggerMiddleware } from "./eventLogger";
-import * as SoundCloud from "./SoundCloud";
-
 import { Action, Options, AppState, WindowLayout } from "../../js/types";
 
 import { getButterchurnOptions } from "./butterchurnOptions";
 import dropboxFilePicker from "./dropboxFilePicker";
 import availableSkins from "./availableSkins";
-import { resolveAudiusUrl } from "./audius";
+import { getTrendingTracks, resolveAudiusUrl } from "../../js/audius";
 
-import { initialTracks, initialState } from "./config";
+import { initialState } from "./config";
 import screenshotInitialState from "./screenshotInitialState";
 import { InjectableDependencies, PrivateOptions } from "../../js/webampLazy";
 
@@ -47,8 +45,7 @@ const sentryMiddleware = createMiddleware(Sentry, {
 
 export async function getWebampConfig(
   screenshot: boolean,
-  skinUrl: string | null,
-  soundCloudPlaylist: SoundCloud.SoundCloudPlaylist | null
+  skinUrl: string | null
 ): Promise<Options & PrivateOptions & InjectableDependencies> {
   let __butterchurnOptions;
   let windowLayout: WindowLayout | undefined;
@@ -67,6 +64,11 @@ export async function getWebampConfig(
         playlist: {
           position: { left: 0, top: 232 },
           size: { extraHeight: 0, extraWidth: 0 },
+          closed: true,
+        },
+        audius: {
+          position: { left: 0, top: 232 },
+          size: { extraHeight: 0, extraWidth: 0 },
         },
         milkdrop: {
           position: { left: 0, top: 348 },
@@ -80,6 +82,11 @@ export async function getWebampConfig(
         playlist: {
           position: { left: 0, top: 232 },
           size: { extraHeight: 4, extraWidth: 0 },
+          closed: true,
+        },
+        audius: {
+          position: { left: 0, top: 232 },
+          size: { extraHeight: 4, extraWidth: 0 },
         },
         milkdrop: {
           position: { left: 275, top: 0 },
@@ -91,14 +98,13 @@ export async function getWebampConfig(
 
   const initialSkin = !skinUrl ? undefined : { url: skinUrl };
 
+  const initialTracks = screenshot
+    ? undefined
+    : await getTrendingTracks(100, 0);
+
   return {
     initialSkin,
-    // eslint-disable-next-line no-nested-ternary
-    initialTracks: screenshot
-      ? undefined
-      : soundCloudPlaylist != null
-      ? SoundCloud.tracksFromPlaylist(soundCloudPlaylist)
-      : initialTracks,
+    initialTracks,
     availableSkins,
     windowLayout,
     filePickers: [dropboxFilePicker],

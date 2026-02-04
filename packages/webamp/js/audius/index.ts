@@ -3,7 +3,7 @@ import {
   AudiusTrack,
   AudiusUser,
 } from "./types";
-import { Track } from "../../../js/types";
+import { Track } from "../types";
 import {
   fetchPlaylistTracks,
   fetchSearchTracks,

@@ -3,6 +3,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   background: var(--audius-bg);
   color: var(--audius-text);
   font-family: var(--audius-font, Arial, sans-serif);
@@ -18,6 +19,7 @@
   padding: 3px 4px;
   background: var(--audius-panel);
   border-bottom: 1px solid var(--audius-border);
+  flex: 0 0 auto;
 }
 
 #webamp .audius-tabs {
@@ -62,7 +64,8 @@
 }
 
 #webamp .audius-results {
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
   background: var(--audius-bg);
   border-top: 1px solid var(--audius-border);
   border-bottom: 1px solid var(--audius-border);
@@ -139,6 +142,7 @@
   padding: 4px;
   background: var(--audius-panel);
   border-top: 1px solid var(--audius-border);
+  flex: 0 0 auto;
 }
 
 #webamp .audius-button {

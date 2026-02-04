@@ -4,8 +4,6 @@ import ReactDOM from "react-dom/client";
 // @ts-ignore
 import isButterchurnSupported from "butterchurn/dist/isSupported.min";
 import { getWebampConfig } from "./webampConfig";
-import * as SoundCloud from "./SoundCloud";
-
 import WebampLazy from "../../js/webampLazy";
 
 import { disableMarquee, skinUrl as configSkinUrl } from "./config";
@@ -23,13 +21,11 @@ const DEFAULT_DOCUMENT_TITLE = document.title;
 let screenshot = false;
 let skinUrl = configSkinUrl;
 let backgroundColor: null | string = null;
-let soundcloudPlaylistId: null | string = null;
 if ("URLSearchParams" in window) {
   const params = new URLSearchParams(location.search);
   screenshot = Boolean(params.get("screenshot"));
   skinUrl = params.get("skinUrl") || skinUrl;
   backgroundColor = params.get("bg");
-  soundcloudPlaylistId = params.get("scPlaylist");
 }
 
 function supressDragAndDrop(e: DragEvent) {
@@ -59,8 +55,10 @@ try {
 }
 
 async function main() {
-  const about = document.getElementsByClassName("about")[0] as HTMLDivElement;
-  if (screenshot) {
+  const about = document.getElementsByClassName("about")[0] as
+    | HTMLDivElement
+    | undefined;
+  if (screenshot && about) {
     about.style.visibility = "hidden";
   }
   if (!WebampLazy.browserIsSupported()) {
@@ -71,19 +69,15 @@ async function main() {
       "hidden";
     return;
   }
-  about.classList.add("loaded");
+  if (about) {
+    about.classList.add("loaded");
+  }
 
-  if (isButterchurnSupported()) {
-    (
-      document.getElementById("butterchurn-share") as HTMLDivElement
-    ).style.display = "flex";
+  const butterchurnShare = document.getElementById("butterchurn-share");
+  if (butterchurnShare != null && isButterchurnSupported()) {
+    (butterchurnShare as HTMLDivElement).style.display = "flex";
   }
-  let soundcloudPlaylist = null;
-  if (soundcloudPlaylistId != null) {
-    // @ts-ignore
-    soundcloudPlaylist = await SoundCloud.getPlaylist(soundcloudPlaylistId);
-  }
-  const config = await getWebampConfig(screenshot, skinUrl, soundcloudPlaylist);
+  const config = await getWebampConfig(screenshot, skinUrl);
 
   const webamp = new WebampLazy(config);
 
@@ -160,7 +154,7 @@ async function main() {
     }
     const root = ReactDOM.createRoot(div);
     root.render(
-      <DemoDesktop webamp={webamp} soundCloudPlaylist={soundcloudPlaylist} />
+      <DemoDesktop webamp={webamp} />
     );
   }
 }

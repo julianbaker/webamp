@@ -7,7 +7,7 @@ import * as Actions from "../../actionCreators";
 import * as Selectors from "../../selectors";
 import { useActionCreator, useTypedSelector } from "../../hooks";
 import { Track } from "../../types";
-import { getTrendingTracks, searchTracks } from "../../../demo/js/audius";
+import { getTrendingTracks, searchTracks } from "../../audius";
 
 type ViewMode = "trending" | "search";
 
@@ -17,7 +17,8 @@ type TrackListState = {
   query?: string;
 };
 
-const RESULT_LIMIT = 20;
+const TRENDING_LIMIT = 100;
+const SEARCH_LIMIT = 20;
 
 const formatDuration = (duration?: number): string => {
   if (typeof duration !== "number" || Number.isNaN(duration)) {
@@ -56,11 +57,17 @@ function AudiusWindow() {
   const skinGenExColors = useTypedSelector(
     (state) => state.display.skinGenExColors
   );
+  const resolvedGenExColors =
+    skinGenExColors ?? {
+      listTextSelected: skinPlaylistStyle.current,
+      divider: "#2c2c2c",
+      windowBackground: "#111111",
+    };
 
   useEffect(() => {
     let cancelled = false;
     setTrendingState({ status: "loading", tracks: [] });
-    getTrendingTracks(RESULT_LIMIT, 0)
+    getTrendingTracks(TRENDING_LIMIT, 0)
       .then((tracks) => {
         if (cancelled) {
           return;
@@ -144,7 +151,7 @@ function AudiusWindow() {
     }
     const requestId = ++searchRequestId.current;
     setSearchState({ status: "loading", tracks: [], query });
-    const tracks = await searchTracks(query, RESULT_LIMIT, 0);
+    const tracks = await searchTracks(query, SEARCH_LIMIT, 0);
     if (requestId !== searchRequestId.current) {
       return;
     }
@@ -182,10 +189,10 @@ function AudiusWindow() {
               "--audius-text": skinPlaylistStyle.normal,
               "--audius-bg": skinPlaylistStyle.normalbg,
               "--audius-selected-bg": skinPlaylistStyle.selectedbg,
-              "--audius-selected-text": skinGenExColors.listTextSelected,
+              "--audius-selected-text": resolvedGenExColors.listTextSelected,
               "--audius-font": `${skinPlaylistStyle.font}, Arial, sans-serif`,
-              "--audius-border": skinGenExColors.divider,
-              "--audius-panel": skinGenExColors.windowBackground,
+              "--audius-border": resolvedGenExColors.divider,
+              "--audius-panel": resolvedGenExColors.windowBackground,
               "--audius-muted": skinPlaylistStyle.current,
               "--audius-input-bg": skinPlaylistStyle.normalbg,
             } as CSSProperties

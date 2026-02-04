@@ -61,7 +61,7 @@ const defaultWindowsState: WindowsState = {
     [WINDOWS.PLAYLIST]: {
       title: "Playlist Editor",
       size: [0, 0],
-      open: true,
+      open: false,
       shade: false,
       canResize: true,
       canShade: true,
@@ -71,8 +71,8 @@ const defaultWindowsState: WindowsState = {
     },
     [WINDOWS.AUDIUS]: {
       title: "Audius Browser",
-      size: [4, 7],
-      open: false,
+      size: [0, 0],
+      open: true,
       shade: false,
       canResize: true,
       canShade: false,

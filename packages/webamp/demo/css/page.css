@@ -23,14 +23,19 @@ body {
 
 .about {
   position: fixed;
-  bottom: 0;
-  right: 0;
-  color: white;
-  /* Let users drag windows over this text */
-  z-index: -1;
+  bottom: 6px;
+  left: 6px;
+  color: rgba(255, 255, 255, 0.7);
+  z-index: 0;
   margin: 0;
   display: none;
-  flex-direction: row;
+  padding: 4px 6px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  font-size: 10px;
+  line-height: 1.2;
+  max-width: 360px;
 }
 
 @media all and (display-mode: fullscreen) {
@@ -44,50 +49,13 @@ body {
 }
 
 .about a {
-  display: flex;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: underline;
+  pointer-events: auto;
 }
 
-.about a svg {
-  margin: 10px 13px;
-  width: 16px;
-  height: 16px;
-  fill: #fff;
-  transition: 0.25s ease-out;
-}
-
-/* TODO: Ideally this would be a border not a :before */
-.about a:before {
-  position: absolute;
-  top: 0;
-  content: "";
-  width: 42px; /* TODO: This should be derived not hard coded */
-  height: 2px;
-  background-color: rgba(255, 255, 255, 0);
-  transition: 0.25s ease-out;
-}
-
-.about a:hover:before {
-  background-color: rgba(255, 255, 255, 255);
-  transition: 0.25s ease-out;
-}
-
-.about a:hover svg {
-  transition: 0.25s ease-out;
-  transform: scale(1.35);
-}
-
-#github-share {
-  background-color: #2d3238;
-}
-
-#music-credits {
-  background-color: rgb(89, 141, 197);
-}
-
-#butterchurn-share {
-  display: none; /* Button is only shown if the window gets enabled */
-  background-size: 100%; /* Image is 2x size for retina displays */
-  background-size: 100%; /* Image is 2x size for retina displays */
+.about a:hover {
+  color: #f2fbff;
 }
 
 #app {

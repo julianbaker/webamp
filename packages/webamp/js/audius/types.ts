@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { Track } from "../../../js/types";
+import { Track } from "../types";
 
 export type AudiusApiResponse<T> = {
   data: T;

@@ -74,19 +74,6 @@ importers:
         specifier: ^5.6.2
         version: 5.6.3
 
-  examples/contained:
-    dependencies:
-      webamp:
-        specifier: ^2.2.0
-        version: 2.2.0(@types/react-dom@18.2.24)(@types/react@18.2.74)
-    devDependencies:
-      typescript:
-        specifier: ~5.8.3
-        version: 5.8.3
-      vite:
-        specifier: ^7.0.4
-        version: 7.0.4(@types/node@24.0.10)(jiti@1.21.7)(lightningcss@1.24.1)(terser@5.43.0)
-
   examples/lazy:
     dependencies:
       butterchurn:
@@ -17959,7 +17946,7 @@ snapshots:
       estree-walker: 2.0.2
       glob: 7.2.3
       graceful-fs: 4.2.11
-      micromatch: 4.0.5
+      micromatch: 4.0.8
       node-gyp-build: 4.8.0
       resolve-from: 5.0.0
     transitivePeerDependencies:
@@ -22397,7 +22384,7 @@ snapshots:
       http-proxy: 1.18.1
       is-glob: 4.0.3
       is-plain-obj: 3.0.0
-      micromatch: 4.0.5
+      micromatch: 4.0.8
     optionalDependencies:
       '@types/express': 4.17.21
     transitivePeerDependencies:

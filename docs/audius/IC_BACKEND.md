@@ -10,10 +10,10 @@
 4. Provide small caching for stream URLs in session.
 
 **Suggested File Layout**
-1. `packages/webamp/demo/js/audius/client.ts`
-2. `packages/webamp/demo/js/audius/mappers.ts`
-3. `packages/webamp/demo/js/audius/types.ts`
-4. `packages/webamp/demo/js/audius/index.ts`
+1. `packages/webamp/js/audius/client.ts`
+2. `packages/webamp/js/audius/mappers.ts`
+3. `packages/webamp/js/audius/types.ts`
+4. `packages/webamp/js/audius/index.ts`
 
 **API Base and Params**
 1. Base URL: `https://api.audius.co/v1`.
