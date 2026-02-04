@@ -6,8 +6,6 @@ import SkinIcon from "./SkinIcon";
 import { SHOW_DESKTOP_ICONS } from "./config";
 import { useWindowSize } from "../../js/hooks";
 import availableSkins from "./availableSkins";
-import DesktopLinkIcon from "./DesktopLinkIcon";
-import museumIcon from "../images/icons/internet-folder-32x32.png";
 // import MilkIcon from "./MilkIcon";
 
 interface Props {
@@ -46,11 +44,7 @@ const DemoDesktop = ({ webamp }: Props) => {
           name: "105",
         }}
       />
-      */ <DesktopLinkIcon
-        iconUrl={museumIcon}
-        name="Winamp Skin Musuem"
-        href={"https://skins.webamp.org"}
-      />
+      */
     );
   }
   return (
