@@ -1,5 +1,5 @@
 {
   "installCommand": "pnpm install --filter webamp...",
-  "buildCommand": "DISABLE_BUNDLE_REPORT=1 NODE_OPTIONS=--max-old-space-size=4096 pnpm --filter ani-cursor build && DISABLE_BUNDLE_REPORT=1 NODE_OPTIONS=--max-old-space-size=4096 pnpm --filter winamp-eqf build && DISABLE_BUNDLE_REPORT=1 NODE_OPTIONS=--max-old-space-size=4096 pnpm --filter webamp build -- --debug",
+  "buildCommand": "pnpm run vercel-build",
   "outputDirectory": "packages/webamp/dist/demo-site"
 }

@@ -16,6 +16,7 @@
     "lint": "npx turbo lint",
     "type-check": "pnpm --filter webamp type-check && pnpm --filter ani-cursor type-check && pnpm --filter skin-database type-check && pnpm --filter webamp-docs type-check && pnpm --filter winamp-eqf type-check",
     "deploy": "npx turbo webamp#build webamp-modern#build --concurrency 1 && mv packages/webamp-modern/build packages/webamp/dist/demo-site/modern",
+    "vercel-build": "NODE_OPTIONS=--max-old-space-size=4096 DISABLE_BUNDLE_REPORT=1 pnpm --filter ani-cursor build && pnpm --filter winamp-eqf build && pnpm --filter webamp build -- --debug",
     "format": "prettier --write '**/*.{js,ts,tsx}'"
   },
   "devDependencies": {
