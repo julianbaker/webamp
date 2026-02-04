@@ -13,6 +13,8 @@ import nodePolyfills from "rollup-plugin-polyfill-node";
 import path from "node:path";
 
 export function getPlugins({ minify, outputFile, vite }) {
+  const disableReport =
+    process.env.DISABLE_BUNDLE_REPORT === "1" || process.env.VERCEL === "1";
   const plugins = [
     replace({
       // Ensure we don't use the dev build of React
@@ -83,7 +85,7 @@ export function getPlugins({ minify, outputFile, vite }) {
         })
       : null,
     // Generate a report so we can see how our bundle size is spent
-    visualizer({ filename: `./${outputFile}.html` }),
+    disableReport ? null : visualizer({ filename: `./${outputFile}.html` }),
   ].filter(Boolean);
 
   return plugins;
