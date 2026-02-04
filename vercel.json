@@ -1,5 +1,5 @@
 {
   "installCommand": "pnpm install --filter webamp...",
-  "buildCommand": "pnpm --filter webamp build",
+  "buildCommand": "pnpm --filter webamp build -- --debug",
   "outputDirectory": "packages/webamp/dist/demo-site"
 }
