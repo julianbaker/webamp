@@ -21,11 +21,16 @@ body {
   text-align: center;
 }
 
-.corner-badge {
+.corner-badges {
   position: fixed;
   right: 12px;
   bottom: 12px;
   z-index: 2;
+  display: flex;
+  gap: 12px;
+}
+
+.corner-badge {
   display: block;
   width: 140px;
 }
