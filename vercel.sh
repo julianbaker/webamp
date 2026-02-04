@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/usr/bin/env sh
+set -eu
 set -x
 
 export NODE_OPTIONS="--max-old-space-size=4096"

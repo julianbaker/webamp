@@ -1,5 +1,5 @@
 {
   "installCommand": "pnpm install --filter webamp...",
-  "buildCommand": "bash scripts/vercel-build.sh",
+  "buildCommand": "sh vercel.sh",
   "outputDirectory": "packages/webamp/dist/demo-site"
 }
